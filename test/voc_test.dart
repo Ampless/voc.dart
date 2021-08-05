@@ -8,4 +8,7 @@ void main() {
             .length >
         20);
   });
+  test('Have there been more than 40 Events?', () async {
+    assert((await Event.getAllEvents()).length > 40);
+  });
 }
