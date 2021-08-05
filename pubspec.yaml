@@ -1,6 +1,6 @@
 name: voc
 description: An implementation of the c3voc's API for media.ccc.de
-version: 0.0.1
+version: 0.0.3
 homepage: https://github.com/Ampless/voc.dart
 
 environment:

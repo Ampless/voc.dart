@@ -75,7 +75,8 @@ class RelatedEvent {
         weight = e['weight'];
 
   RelatedEvent({required this.id, required this.guid, required this.weight});
-  //TODO: Event download() {}
+
+  Future<Event> download() => Event.download(id);
 }
 
 class Event {
@@ -101,6 +102,7 @@ class Event {
   int viewCount, length, duration;
   bool promoted;
   List<RelatedEvent> related;
+  //TODO: recordings
 
   Event.fromJson(Map e)
       : guid = e['guid'],
@@ -127,8 +129,9 @@ class Event {
         length = e['length'],
         duration = e['duration'],
         promoted = e['promoted'],
-        related =
-            e['related'].map<RelatedEvent>((e) => RelatedEvent.fromJson(e));
+        related = e['related']
+            .map<RelatedEvent>((e) => RelatedEvent.fromJson(e))
+            .toList();
 
   Event({
     this.guid,
@@ -162,4 +165,9 @@ class Event {
       jsonDecode(await (http ?? ScHttpClient())
               .get('https://api.media.ccc.de/public/events'))['events']
           .map<Event>((c) => Event.fromJson(c));
+
+  /// id can be either an id or a guid
+  static Future<Event> download(Object id, [ScHttpClient? http]) async =>
+      Event.fromJson(jsonDecode(await (http ?? ScHttpClient())
+          .get('https://api.media.ccc.de/public/events/$id')));
 }
