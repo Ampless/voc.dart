@@ -60,7 +60,7 @@ class Conference {
           [ScHttpClient? http]) async =>
       jsonDecode(await (http ?? ScHttpClient()).get(
               'https://api.media.ccc.de/public/conferences'))['conferences']
-          .map<Conference>((c) => Conference.fromJson(c))
+          .map<Conference>(Conference.fromJson)
           .toList();
 }
 
@@ -164,7 +164,7 @@ class Event {
   static Future<Iterable<Event>> getAllEvents([ScHttpClient? http]) async =>
       jsonDecode(await (http ?? ScHttpClient())
               .get('https://api.media.ccc.de/public/events'))['events']
-          .map<Event>((c) => Event.fromJson(c));
+          .map<Event>(Event.fromJson);
 
   /// id can be either an id or a guid
   static Future<Event> download(Object id, [ScHttpClient? http]) async =>

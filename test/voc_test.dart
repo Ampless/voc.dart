@@ -11,9 +11,6 @@ void main() {
   test('Have there been more than 40 Events?', () async {
     assert((await Event.getAllEvents()).length > 40);
   });
-  test('Have there been more than 40 Events?', () async {
-    assert((await Event.getAllEvents()).length > 40);
-  });
   test('Get Event from RelatedEvent', () async {
     await RelatedEvent(guid: 'ChACwuF2-cEBp_u6HrharA', id: 1892, weight: 1)
         .download();

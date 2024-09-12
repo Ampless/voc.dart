@@ -1,3 +1,10 @@
+## 0.0.4
+
+- Remove duplicate test.
+- Switch from `pedantic` to `lints`.
+- `dart 3`.
+- `schttp 5`.
+
 ## 0.0.3
 
 - `Event.download`
